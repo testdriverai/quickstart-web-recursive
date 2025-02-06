@@ -1,3 +1,3 @@
-1. Navigate to the website URL.
-2. Assert that the page loads successfully.
-3. Assert that the logo is visibly displayed on the page.
+1. Open the browser to the website's URL.
+2. Assert that the webpage loads without errors.
+3. Assert that the logo is visible and properly displayed.
