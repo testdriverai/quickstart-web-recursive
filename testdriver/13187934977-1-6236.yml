@@ -1,0 +1,9 @@
+version: 4.2.12
+session: 67a525d4d06c99b9c179cef1
+steps:
+  - prompt: Locate the "Start Building" button on the homepage.
+    commands:
+      - command: hover-text
+        text: Start Building
+        description: button to begin building on the homepage
+        action: click
