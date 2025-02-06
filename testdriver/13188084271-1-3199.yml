@@ -1,0 +1,26 @@
+version: 4.2.12
+session: 67a528371b6f3ddb9b034f52
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+      - command: press-keys
+        keys:
+          - control
+          - l
+      - command: type
+        text: https://example.com
+  - prompt: Navigate to the target webpage.
+    commands:
+      - command: press-keys
+        keys:
+          - enter
+  - prompt: Assert that the webpage loads successfully.
+    commands:
+      - command: assert
+        expect: Example Domain is visible on the page
+  - prompt: Assert that the logo is visible on the page.
+    commands:
+      - command: assert
+        expect: favicon is visible in the browser tab
