@@ -1,0 +1,23 @@
+version: 4.2.12
+session: 67a5284e1b6f3ddb9b034fcb
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Locate the "Start Building" button on the homepage.
+    commands:
+      - command: hover-text
+        text: Start Building
+        description: button on the homepage
+        action: hover
+  - prompt: Click the "Start Building" button.
+    commands:
+      - command: hover-text
+        text: Start Building
+        description: button on the homepage
+        action: click
+  - prompt: Assert that the user is taken to the respective page successfully.
+    commands:
+      - command: assert
+        expect: the page contains "Register for free"
