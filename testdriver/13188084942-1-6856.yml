@@ -1,0 +1,17 @@
+version: 4.2.12
+session: 67a52823d06c99b9c179cf9d
+steps:
+  - prompt: Find the "Login" link at the top.
+    commands:
+      - command: hover-text
+        text: LOGIN
+        description: login link at the top right of the header
+        action: click
+  - prompt: Click on "Login".
+    commands: []
+  - prompt: >-
+      Assert that the login page is displayed with the fields for username and
+      password.
+    commands:
+      - command: assert
+        expect: the login page is displayed with fields for email address and password
