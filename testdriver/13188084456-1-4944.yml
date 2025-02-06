@@ -1,0 +1,29 @@
+version: 4.2.12
+session: 67a5282b1b6f3ddb9b034f11
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Navigate to each major menu item
+    commands:
+      - command: hover-text
+        text: Products
+        description: Products menu item in the header
+        action: click
+      - command: hover-text
+        text: Solutions
+        description: Solutions menu item in the header
+        action: click
+      - command: hover-text
+        text: Pricing
+        description: Pricing menu item in the header
+        action: click
+      - command: scroll-until-text
+        text: Developers
+        direction: right
+        method: keyboard
+      - command: hover-text
+        text: Resources
+        description: Resources menu item in the header
+        action: click
