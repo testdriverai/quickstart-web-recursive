@@ -1,0 +1,9 @@
+version: 4.2.12
+session: 67a52849d06c99b9c179d042
+steps:
+  - prompt: Find the "Accept Cookies" button at the bottom.
+    commands:
+      - command: hover-text
+        text: Accept Cookies
+        description: button at the bottom of the page
+        action: click
