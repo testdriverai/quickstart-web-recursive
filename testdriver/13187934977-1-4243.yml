@@ -1,0 +1,11 @@
+version: 4.2.12
+session: 67a525c31b6f3ddb9b034e39
+steps:
+  - prompt: Assert that the page loads successfully.
+    commands:
+      - command: assert
+        expect: the text "Example Domain" is visible on the page
+  - prompt: Assert that the logo is visibly displayed on the page.
+    commands:
+      - command: assert
+        expect: the favicon is visible in the browser tab
