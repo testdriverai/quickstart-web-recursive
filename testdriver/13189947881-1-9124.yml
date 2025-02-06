@@ -1,0 +1,19 @@
+version: 4.2.12
+session: 67a547fbd06c99b9c179d655
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Click on "Products" in the navigation menu.
+    commands:
+      - command: hover-text
+        text: Products
+        description: navigation menu item for Products
+        action: click
+  - prompt: Assert that the products page or dropdown displays correctly.
+    commands:
+      - command: assert
+        expect: >-
+          the products dropdown is visible with options like "Overview" and
+          "Features"
