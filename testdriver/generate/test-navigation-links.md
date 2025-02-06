@@ -1,5 +1,4 @@
-1. Focus the browser window.
-2. Click on the "Products" link in the navigation bar.
-3. Assert that the products page is displayed.
-4. Click on the "Solutions" link in the navigation bar.
-5. Assert that the solutions page is displayed.
+1. Click on "Products" in the navigation menu.
+2. Assert that the Products page is displayed.
+3. Click on "Pricing" in the navigation menu.
+4. Assert that the Pricing page is displayed.

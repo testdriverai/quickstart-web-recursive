@@ -1,4 +1,3 @@
-1. Focus the browser window.
-2. Locate the "Start Building" button.
-3. Click the "Start Building" button.
-4. Assert that the action leads to an expected page or outcome.
+1. Locate the main call to action.
+2. Click on "Start Building."
+3. Assert that the correct page or modal is loaded.
