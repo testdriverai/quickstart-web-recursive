@@ -1,0 +1,53 @@
+version: 4.2.12
+session: 67a528301b6f3ddb9b034f2b
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: >-
+      Verify the presence of navigation links: Products, Solutions, Pricing,
+      Developers, Resources.
+    commands:
+      - command: hover-text
+        text: Products
+        description: navigation link for Products
+        action: hover
+      - command: hover-text
+        text: Solutions
+        description: navigation link for Solutions
+        action: hover
+      - command: hover-text
+        text: Pricing
+        description: navigation link for Pricing
+        action: hover
+      - command: hover-text
+        text: Developers
+        description: navigation link for Developers
+        action: hover
+      - command: hover-text
+        text: Resources
+        description: navigation link for Resources
+        action: hover
+  - prompt: Click each link.
+    commands:
+      - command: hover-text
+        text: Products
+        description: navigation link for Products
+        action: click
+      - command: hover-text
+        text: Solutions
+        description: navigation link for Solutions
+        action: click
+      - command: hover-text
+        text: Pricing
+        description: navigation link for Pricing
+        action: click
+      - command: hover-text
+        text: Developers
+        description: navigation link for Developers
+        action: click
+      - command: hover-text
+        text: Resources
+        description: navigation link for Resources
+        action: click
