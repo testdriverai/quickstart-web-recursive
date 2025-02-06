@@ -1,3 +1,3 @@
-1. Locate the "Contact Us" link or button.
-2. Click on the "Contact Us" link or button.
-3. Assert that the contact page loads successfully.
+1. Find the "Contact Sales" link.
+2. Click the link.
+3. Assert that the contact page or contact form is loaded without errors.
