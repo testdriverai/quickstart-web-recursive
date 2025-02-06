@@ -1,0 +1,19 @@
+version: 4.2.12
+session: 67a525cb1b6f3ddb9b034e47
+steps:
+  - prompt: Identify the main call-to-action button on the homepage.
+    commands:
+      - command: hover-text
+        text: Start Building
+        description: main call-to-action button on the homepage
+        action: click
+  - prompt: Click on the main call-to-action button.
+    commands:
+      - command: hover-text
+        text: Register
+        description: main call-to-action button on the registration page
+        action: click
+  - prompt: Assert that the action leads to the expected outcome
+    commands:
+      - command: assert
+        expect: the registration page is displayed with "Register for free"
