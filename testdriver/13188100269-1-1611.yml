@@ -1,0 +1,13 @@
+version: 4.2.12
+session: 67a528401b6f3ddb9b034f84
+steps:
+  - prompt: Focus the browser window.
+    commands: []
+  - prompt: Assert that the webpage loads successfully.
+    commands:
+      - command: assert
+        expect: The market leading platform for real-time interactive apps is visible
+  - prompt: Assert that the logo is displayed correctly.
+    commands:
+      - command: assert
+        expect: pubnub logo is visible
