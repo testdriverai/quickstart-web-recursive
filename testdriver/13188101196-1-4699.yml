@@ -1,0 +1,13 @@
+version: 4.2.12
+session: 67a52983d06c99b9c179d286
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Navigate to the homepage.
+    commands:
+      - command: press-keys
+        keys:
+          - alt
+          - home
