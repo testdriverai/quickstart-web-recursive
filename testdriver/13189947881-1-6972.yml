@@ -1,0 +1,17 @@
+version: 4.2.12
+session: 67a547f31b6f3ddb9b0355bb
+steps:
+  - prompt: Wait for the cookie banner to appear.
+    commands:
+      - command: wait-for-text
+        text: Accept Cookies
+  - prompt: Click "Accept Cookies" on the banner.
+    commands:
+      - command: hover-text
+        text: Accept Cookies
+        description: accept cookies button on the cookie banner
+        action: click
+  - prompt: Assert that the banner no longer shows and cookies are enabled.
+    commands:
+      - command: assert
+        expect: the cookie banner is not visible
