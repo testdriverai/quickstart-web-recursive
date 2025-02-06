@@ -1,0 +1,18 @@
+version: 4.2.12
+session: 67a52830d06c99b9c179cfc5
+steps:
+  - prompt: Navigate to the website URL.
+    commands:
+      - command: press-keys
+        keys:
+          - control
+          - l
+      - command: type
+        text: https://example.com
+      - command: press-keys
+        keys:
+          - enter
+  - prompt: Assert that the page loads successfully.
+    commands:
+      - command: assert
+        expect: Example Domain is visible on the page
