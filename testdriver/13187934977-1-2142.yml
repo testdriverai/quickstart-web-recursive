@@ -1,0 +1,16 @@
+version: 4.2.12
+session: 67a525c31b6f3ddb9b034e3c
+steps:
+  - prompt: Load the webpage.
+    commands:
+      - command: hover-text
+        text: pubnub.com
+        description: URL bar in the browser
+        action: click
+      - command: press-keys
+        keys:
+          - enter
+  - prompt: Assert that the pubnub logo is visible.
+    commands:
+      - command: assert
+        expect: the PubNub logo is visible
