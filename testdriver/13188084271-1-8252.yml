@@ -1,0 +1,29 @@
+version: 4.2.12
+session: 67a5282c1b6f3ddb9b034f17
+steps:
+  - prompt: Load the webpage.
+    commands:
+      - command: hover-text
+        text: pubnub.com
+        description: address bar in Google Chrome
+        action: click
+      - command: type
+        text: https://example.com
+      - command: press-keys
+        keys:
+          - enter
+  - prompt: Assert that the pubnub logo is visible.
+    commands:
+      - command: hover-text
+        text: example.com
+        description: address bar in Google Chrome
+        action: click
+      - command: type
+        text: https://www.pubnub.com
+      - command: press-keys
+        keys:
+          - enter
+      - command: wait
+        timeout: 5000
+      - command: assert
+        expect: the PubNub logo is visible
