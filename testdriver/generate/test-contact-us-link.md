@@ -1,4 +1,3 @@
-1. Focus the browser window.
-2. Assert that the "Contact Sales" link is visible on the homepage.
-3. Click on the "Contact Sales" link.
-4. Assert that the contact form or page is displayed without errors.
+1. Click on the "Contact Sales" link.
+2. Assert that the contact page loads successfully.
+3. Verify that the contact form is visible.

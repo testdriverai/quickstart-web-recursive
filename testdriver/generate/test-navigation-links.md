@@ -1,5 +1,3 @@
-1. Focus the browser window.
-2. Click on the "Products" link in the navigation bar.
-3. Assert that the products page is displayed.
-4. Click on the "Solutions" link in the navigation bar.
-5. Assert that the solutions page is displayed.
+1. Identify and click on the "Products" link.
+2. Assert that the products page loads correctly.
+3. Repeat this for other navigation links like "Solutions" and "Pricing."
