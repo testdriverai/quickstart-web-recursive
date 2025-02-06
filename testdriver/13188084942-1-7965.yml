@@ -1,0 +1,15 @@
+version: 4.2.12
+session: 67a52831d06c99b9c179cfcc
+steps:
+  - prompt: Click on the "Try for free" button.
+    commands:
+      - command: hover-text
+        text: Try for free
+        description: button in the top right of the header
+        action: click
+  - prompt: Assert that a sign-up or login form appears.
+    commands:
+      - command: assert
+        expect: >-
+          the sign-up form is visible with fields for first name, last name,
+          email, and password
