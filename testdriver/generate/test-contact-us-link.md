@@ -1,3 +1,3 @@
-1. Find the "Contact Sales" link.
-2. Click on "Contact Sales".
-3. Assert that the contact page is displayed correctly.
+1. Focus the browser window.
+2. Click on the "Contact Sales" link.
+3. Assert that the contact form or page is displayed.
