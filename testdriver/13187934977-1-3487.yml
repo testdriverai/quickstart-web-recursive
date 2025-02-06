@@ -1,0 +1,23 @@
+version: 4.2.12
+session: 67a525e11b6f3ddb9b034e62
+steps:
+  - prompt: Locate the "Contact Us" link or button.
+    commands:
+      - command: hover-text
+        text: Contact Sales
+        description: contact sales button in the header
+        action: click
+  - prompt: Click on the "Contact Us" link or button.
+    commands:
+      - command: scroll-until-text
+        text: Contact Us
+        direction: down
+        method: keyboard
+      - command: hover-text
+        text: Contact Us
+        description: contact us link or button
+        action: click
+  - prompt: Assert that the contact page loads successfully.
+    commands:
+      - command: assert
+        expect: the page contains "Contact our experts!"
