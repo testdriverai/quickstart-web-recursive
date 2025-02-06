@@ -1,4 +1,3 @@
-1. Focus the browser window.
-2. Locate the "Try for free" button on the homepage.
-3. Click the "Try for free" button.
-4. Assert that the sign-up or trial page loads successfully.
+1. Locate the "Try for free" button in the navigation menu.
+2. Click the "Try for free" button.
+3. Assert that the trial sign-up page loads successfully.

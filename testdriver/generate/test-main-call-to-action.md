@@ -1,4 +1,3 @@
-1. Focus the browser window.
-2. Locate the "Start Building" button on the homepage.
-3. Click the "Start Building" button.
-4. Assert that the user is taken to the respective page successfully.
+1. Locate the "Start Building" button on the homepage.
+2. Click the "Start Building" button.
+3. Assert that the click takes you to the appropriate page or initiates the expected action.
