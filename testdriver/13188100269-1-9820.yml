@@ -1,0 +1,19 @@
+version: 4.2.12
+session: 67a5284ad06c99b9c179d049
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Locate the "Try for free" button on the homepage.
+    commands:
+      - command: hover-text
+        text: Try for free
+        description: free trial button in the top right of the header
+        action: click
+  - prompt: Click the "Try for free" button.
+    commands: []
+  - prompt: Assert that the sign-up or trial page loads successfully.
+    commands:
+      - command: assert
+        expect: the "Register for free" text is visible on the page
