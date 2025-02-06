@@ -1,0 +1,21 @@
+version: 4.2.12
+session: 67a5284c1b6f3ddb9b034fbf
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Navigate to the website home page.
+    commands:
+      - command: hover-text
+        text: pubnub
+        description: website logo in the top left corner
+        action: click
+  - prompt: Assert that the webpage loads successfully.
+    commands:
+      - command: assert
+        expect: The market leading platform for real-time interactive apps is visible
+  - prompt: Assert that the logo is visible on the page.
+    commands:
+      - command: assert
+        expect: the logo with text "pubnub" is visible on the page
