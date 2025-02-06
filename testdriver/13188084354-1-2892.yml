@@ -1,0 +1,13 @@
+version: 4.2.12
+session: 67a52824d06c99b9c179cf9f
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Locate the "Start Building" button.
+    commands:
+      - command: hover-text
+        text: Start Building
+        description: button to initiate building process on the webpage
+        action: click
