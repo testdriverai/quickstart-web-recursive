@@ -1,0 +1,9 @@
+version: 4.2.12
+session: 67a528241b6f3ddb9b034ef0
+steps:
+  - prompt: Identify the main call to action button
+    commands:
+      - command: hover-text
+        text: Start Building
+        description: main call to action button on the homepage
+        action: hover
