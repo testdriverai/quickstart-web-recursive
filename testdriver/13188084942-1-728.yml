@@ -1,0 +1,19 @@
+version: 4.2.12
+session: 67a5283a1b6f3ddb9b034f67
+steps:
+  - prompt: Locate the "Start Building" button on the homepage.
+    commands:
+      - command: hover-text
+        text: Start Building
+        description: button to initiate building process on the homepage
+        action: hover
+  - prompt: Click the "Start Building" button.
+    commands:
+      - command: hover-text
+        text: Start Building
+        description: button to initiate building process on the homepage
+        action: click
+  - prompt: Assert that it redirects to the expected page or section.
+    commands:
+      - command: assert
+        expect: Register for free form is visible
