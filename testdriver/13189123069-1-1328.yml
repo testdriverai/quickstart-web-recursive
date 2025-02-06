@@ -1,0 +1,17 @@
+version: 4.2.12
+session: 67a538de1b6f3ddb9b0353b0
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Click on the "Contact Sales" link.
+    commands:
+      - command: hover-text
+        text: Contact Sales
+        description: contact sales link in the top navigation bar
+        action: click
+  - prompt: Assert that the contact page is loaded successfully.
+    commands:
+      - command: assert
+        expect: Contact our experts! is visible on the page
