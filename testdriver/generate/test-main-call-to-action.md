@@ -1,3 +1,3 @@
-1. Identify the main call-to-action button on the homepage.
-2. Click on the main call-to-action button.
-3. Assert that the action leads to the expected outcome
+1. Locate the "Start Building" button.
+2. Click on the "Start Building" button.
+3. Assert that the click redirects to the correct destination or performs the expected action.
