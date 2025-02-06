@@ -1,0 +1,13 @@
+version: 4.2.12
+session: 67a528261b6f3ddb9b034ef8
+steps:
+  - prompt: Click on the "Contact Sales" link.
+    commands:
+      - command: hover-text
+        text: Contact Sales
+        description: contact sales link in the header
+        action: click
+  - prompt: Assert that the contact page is displayed.
+    commands:
+      - command: assert
+        expect: Contact our experts!
