@@ -1,0 +1,8 @@
+version: 4.2.12
+session: 67a52836d06c99b9c179cfe8
+steps:
+  - prompt: Load the webpage.
+    commands:
+      - command: press-keys
+        keys:
+          - enter
