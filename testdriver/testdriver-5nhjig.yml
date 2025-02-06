@@ -1,0 +1,17 @@
+version: 4.2.12
+session: 67a514a21b6f3ddb9b034af0
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Navigate to the homepage.
+    commands:
+      - command: press-keys
+        keys:
+          - alt
+          - home
+  - prompt: Assert that the logo is displayed on the page.
+    commands:
+      - command: assert
+        expect: the Google logo is displayed
