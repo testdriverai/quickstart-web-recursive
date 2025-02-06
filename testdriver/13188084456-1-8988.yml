@@ -1,0 +1,19 @@
+version: 4.2.12
+session: 67a52827d06c99b9c179cfab
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Locate the "Accept Cookies" button on the cookie banner.
+    commands:
+      - command: hover-text
+        text: Accept Cookies
+        description: button on the cookie banner
+        action: hover
+  - prompt: Click on the "Accept Cookies" button.
+    commands:
+      - command: hover-text
+        text: Accept Cookies
+        description: button on the cookie banner
+        action: click
