@@ -1,0 +1,19 @@
+version: 4.2.12
+session: 67a525da1b6f3ddb9b034e57
+steps:
+  - prompt: Find the "Try for Free" button on the website.
+    commands:
+      - command: hover-text
+        text: Try for free
+        description: button in the top right of the header
+        action: click
+  - prompt: Click the "Try for Free" button.
+    commands:
+      - command: hover-text
+        text: Try for free
+        description: button in the top right of the header
+        action: click
+  - prompt: Assert that it navigates to the sign-up or trial page.
+    commands:
+      - command: assert
+        expect: Register for free form is visible
