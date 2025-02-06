@@ -1,0 +1,23 @@
+version: 4.2.12
+session: 67a5296c1b6f3ddb9b0351f4
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Locate the "Privacy Policy" link in the footer.
+    commands:
+      - command: scroll-until-text
+        text: Privacy Policy
+        direction: down
+        method: keyboard
+  - prompt: Click the "Privacy Policy" link.
+    commands:
+      - command: hover-text
+        text: Privacy Policy
+        description: link in the footer
+        action: click
+  - prompt: Assert that the Privacy Policy page is displayed.
+    commands:
+      - command: assert
+        expect: the text "PubNub Privacy Policy" is visible on the page
