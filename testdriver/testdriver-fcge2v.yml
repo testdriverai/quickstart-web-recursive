@@ -1,0 +1,11 @@
+version: 4.2.12
+session: 67a514ad1b6f3ddb9b034af9
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Assert that the "Start Building" button is visible.
+    commands:
+      - command: assert
+        expect: the "Start Building" button is visible
