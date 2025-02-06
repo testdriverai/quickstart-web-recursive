@@ -1,0 +1,41 @@
+version: 4.2.12
+session: 67a514a31b6f3ddb9b034af2
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: >-
+      Click on each item in the navigation menu: Products, Solutions, Pricing,
+      Developers, Resources.
+    commands:
+      - command: hover-text
+        text: Products
+        description: navigation menu item for Products
+        action: click
+      - command: hover-text
+        text: Solutions
+        description: navigation menu item for Solutions
+        action: click
+      - command: hover-text
+        text: Pricing
+        description: navigation menu item for Pricing
+        action: click
+      - command: hover-text
+        text: Developers
+        description: navigation menu item for Developers
+        action: click
+      - command: hover-text
+        text: Resources
+        description: navigation menu item for Resources
+        action: click
+  - prompt: Assert that each click takes the user to the correct section.
+    commands:
+      - command: assert
+        expect: PubNub for Developers
+      - command: assert
+        expect: Documentation
+      - command: assert
+        expect: Live Code Tour
+      - command: assert
+        expect: Tutorials
