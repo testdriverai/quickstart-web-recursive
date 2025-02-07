@@ -1,0 +1,3 @@
+1. Focus the browser window.
+2. Click on the "Contact Sales" link.
+3. Assert that the contact form or contact page loads successfully.
