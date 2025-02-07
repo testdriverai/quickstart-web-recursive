@@ -1,0 +1,17 @@
+version: 4.2.12
+session: 67a550960d04a93d473edc45
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Click on "Pricing" in the navigation menu.
+    commands:
+      - command: hover-text
+        text: Pricing
+        description: navigation menu item for pricing
+        action: click
+  - prompt: Assert that the pricing page loads successfully.
+    commands:
+      - command: assert
+        expect: the text "Pricing and Support" is visible on the page
