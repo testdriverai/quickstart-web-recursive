@@ -1,0 +1,11 @@
+version: 4.2.12
+session: 67a550910d04a93d473edc41
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Assert that the webpage logo "pubnub" is visible.
+    commands:
+      - command: assert
+        expect: the "pubnub" logo is visible on the webpage
