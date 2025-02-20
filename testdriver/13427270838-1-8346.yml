@@ -1,0 +1,36 @@
+version: 4.2.12
+session: 67b6a21fe3225a8c6829cd0c
+steps:
+  - prompt: Locate the "Contact Sales" link.
+    commands:
+      - command: hover-text
+        text: Contact Sales
+        description: contact sales link in the header
+        action: click
+      - command: hover-text
+        text: Contact Sales
+        description: contact sales link in the header
+        action: click
+  - prompt: Assert that the contact page or form loads successfully.
+    commands:
+      - command: assert
+        expect: the contact form is visible on the page
+      - command: press-keys
+        keys:
+          - control
+          - l
+      - command: type
+        text: https://pubnub.com/company/contact-sales/
+      - command: press-keys
+        keys:
+          - enter
+  - prompt: Assert that the webpage loads completely.
+    commands:
+      - command: assert
+        expect: >-
+          the text "Find out how PubNub can help your business" is visible on
+          the page
+  - prompt: Assert that the "pubnub" logo is visible on the page.
+    commands:
+      - command: assert
+        expect: the text "pubnub" is visible on the page
