@@ -1,0 +1,44 @@
+version: 4.2.12
+session: 67b6a21b82f9d745f9cc4418
+steps:
+  - prompt: Locate the cookie consent bar at the bottom.
+    commands:
+      - command: hover-text
+        text: Accept Cookies
+        description: button in the cookie consent bar at the bottom
+        action: hover
+  - prompt: Click "Accept Cookies."
+    commands:
+      - command: hover-text
+        text: Accept Cookies
+        description: button in the cookie consent bar at the bottom
+        action: click
+  - prompt: Assert that the consent bar disappears.
+    commands:
+      - command: assert
+        expect: the "Accept Cookies" button is not visible
+  - prompt: Refresh the page and assert that the consent bar does not reappear.
+    commands:
+      - command: press-keys
+        keys:
+          - control
+          - r
+      - command: assert
+        expect: the "Accept Cookies" button is not visible
+  - prompt: Click on the search icon at the top.
+    commands:
+      - command: hover-image
+        description: search icon at the top of the page
+        action: click
+  - prompt: Enter a search term.
+    commands:
+      - command: hover-text
+        text: Search or ask anything
+        description: search input field
+        action: click
+      - command: type
+        text: real-time data
+  - prompt: Assert that search results are displayed correctly.
+    commands:
+      - command: assert
+        expect: search results for "real-time data" are displayed
