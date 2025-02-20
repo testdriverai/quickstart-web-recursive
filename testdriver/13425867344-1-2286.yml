@@ -1,0 +1,15 @@
+version: 4.2.12
+session: 67b685af82f9d745f9cc417f
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Assert that the webpage loads successfully.
+    commands:
+      - command: assert
+        expect: The market leading platform for real-time interactive apps is visible
+  - prompt: Assert that the logo is visible on the page.
+    commands:
+      - command: assert
+        expect: pubnub logo is visible
