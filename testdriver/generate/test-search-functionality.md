@@ -1,4 +1,3 @@
-1. Focus the browser window.
-2. Click on the search icon in the header.
-3. Type "real-time apps" and press enter.
-4. Assert that search results are displayed.
+1. Click on the search icon in the header.
+2. Enter a search term and submit the search.
+3. Assert that search results related to the term are displayed.
