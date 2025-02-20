@@ -1,0 +1,49 @@
+version: 4.2.12
+session: 67b6a70dd5cf0ddf3cb401e6
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Click on the "Contact Sales" button.
+    commands:
+      - command: hover-text
+        text: Contact Sales
+        description: button in the top navigation bar
+        action: click
+  - prompt: Assert that the contact form page is displayed.
+    commands:
+      - command: assert
+        expect: the contact form page is displayed with "Contact our experts!"
+  - prompt: Fill in the contact form with test data.
+    commands:
+      - command: hover-text
+        text: First Name
+        description: label for first name input
+        action: click
+      - command: type
+        text: Test
+      - command: hover-text
+        text: Last Name
+        description: label for last name input
+        action: click
+      - command: type
+        text: User
+      - command: hover-text
+        text: Email Address
+        description: label for email address input
+        action: click
+      - command: type
+        text: testuser@example.com
+      - command: hover-text
+        text: Company Name
+        description: label for company name input
+        action: click
+      - command: type
+        text: Test Company
+      - command: hover-text
+        text: Message
+        description: label for message input
+        action: click
+      - command: type
+        text: This is a test message.
