@@ -1,0 +1,19 @@
+version: 4.2.12
+session: 67b67f2382f9d745f9cc4113
+steps:
+  - prompt: Click on the "Pricing" menu link.
+    commands:
+      - command: hover-text
+        text: Pricing
+        description: menu link in the navigation bar
+        action: click
+  - prompt: Assert that the pricing page loads successfully.
+    commands:
+      - command: assert
+        expect: Pricing and Support is visible on the page
+  - prompt: Assert that pricing options are displayed correctly.
+    commands:
+      - command: assert
+        expect: >-
+          Pricing options like "Platform Free", "Platform Pro", and "Platform
+          Starter" are visible on the page
