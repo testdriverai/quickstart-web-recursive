@@ -1,0 +1,12 @@
+version: 4.2.12
+session: 67b67f2582f9d745f9cc4115
+steps:
+  - prompt: Load the webpage.
+    commands:
+      - command: press-keys
+        keys:
+          - enter
+  - prompt: Assert that the webpage loads successfully.
+    commands:
+      - command: assert
+        expect: the text "Example Domain" is visible on the webpage
