@@ -1,0 +1,47 @@
+version: 4.2.12
+session: 67b69f6b82f9d745f9cc43a8
+steps:
+  - prompt: Identify the navigation menu at the top.
+    commands:
+      - command: hover-text
+        text: Products
+        description: navigation menu item for products
+        action: hover
+      - command: hover-text
+        text: Solutions
+        description: navigation menu item for solutions
+        action: hover
+      - command: hover-text
+        text: Pricing
+        description: navigation menu item for pricing
+        action: hover
+      - command: hover-text
+        text: Developers
+        description: navigation menu item for developers
+        action: hover
+      - command: hover-text
+        text: Resources
+        description: navigation menu item for resources
+        action: hover
+  - prompt: Click on each menu item
+    commands:
+      - command: hover-text
+        text: Products
+        description: navigation menu item for products
+        action: click
+      - command: hover-text
+        text: Solutions
+        description: navigation menu item for solutions
+        action: click
+      - command: hover-text
+        text: Pricing
+        description: navigation menu item for pricing
+        action: click
+      - command: hover-text
+        text: Developers
+        description: navigation menu item for developers
+        action: click
+      - command: hover-text
+        text: Resources
+        description: navigation menu item for resources
+        action: click
