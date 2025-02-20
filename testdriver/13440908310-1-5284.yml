@@ -1,0 +1,37 @@
+version: 4.2.12
+session: 67b76430d10d3ab2f928bf67
+steps:
+  - prompt: Click on "Sign in" at the top right corner.
+    commands:
+      - command: hover-text
+        text: Sign in
+        description: sign in option at the top right corner of the webpage
+        action: click
+  - prompt: Enter test credentials and click "Sign in".
+    commands:
+      - command: hover-text
+        text: Email, phone, or Skype
+        description: email input field
+        action: click
+      - command: type
+        text: test@example.com
+      - command: hover-text
+        text: Next
+        description: next button
+        action: click
+      - command: hover-text
+        text: Password
+        description: password input field
+        action: click
+      - command: type
+        text: testpassword
+      - command: hover-text
+        text: Sign in
+        description: sign in button
+        action: click
+  - prompt: Assert that the user is logged in successfully.
+    commands:
+      - command: assert
+        expect: sign-in is blocked
+  - prompt: Verify that user dashboard or home page is displayed.
+    commands: []
