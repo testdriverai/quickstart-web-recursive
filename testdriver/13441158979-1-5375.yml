@@ -1,0 +1,62 @@
+version: 4.2.12
+session: 67b7675dd5cf0ddf3cb40927
+steps:
+  - prompt: Click on the search icon in the header.
+    commands:
+      - command: hover-text
+        text: Search
+        description: search icon in the header
+        action: click
+  - prompt: Type in "Surface Laptop" and press enter.
+    commands:
+      - command: hover-text
+        text: Search Microsoft.com
+        description: search bar in the header
+        action: click
+      - command: type
+        text: Surface Laptop
+      - command: press-keys
+        keys:
+          - enter
+  - prompt: Assert that search results are displayed.
+    commands:
+      - command: assert
+        expect: search results are displayed
+  - prompt: Verify that results are relevant to the search query.
+    commands:
+      - command: assert
+        expect: results include "Surface Laptop"
+  - prompt: Click on "Sign in" at the top right corner.
+    commands:
+      - command: hover-text
+        text: Sign in
+        description: sign in link at the top right corner
+        action: click
+  - prompt: Enter test credentials and click "Sign in".
+    commands:
+      - command: hover-text
+        text: Email, phone, or Skype
+        description: email input field
+        action: click
+      - command: type
+        text: test@example.com
+      - command: hover-text
+        text: Next
+        description: next button on the sign-in form
+        action: click
+  - prompt: Assert that the user is logged in successfully.
+    commands: []
+  - prompt: Assert that the user is logged in successfully.
+    commands:
+      - command: hover-text
+        text: Password
+        description: password input field
+        action: click
+      - command: type
+        text: password123
+      - command: hover-text
+        text: Sign in
+        description: sign in button on the password entry screen
+        action: click
+  - prompt: Verify that user dashboard or home page is displayed.
+    commands: []
