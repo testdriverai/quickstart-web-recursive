@@ -1,0 +1,41 @@
+version: 4.2.12
+session: 67b766e7d5cf0ddf3cb408c2
+steps:
+  - prompt: Click on "Shop now" for the featured product.
+    commands:
+      - command: hover-text
+        text: Shop now
+        description: button for the featured product
+        action: click
+  - prompt: Assert that the product page loads successfully.
+    commands:
+      - command: assert
+        expect: Surface Laptop is visible on the page
+  - prompt: Verify that product details are displayed correctly.
+    commands:
+      - command: assert
+        expect: Starting From $799.99 is visible on the page
+  - prompt: Click on the "Search" icon or field.
+    commands:
+      - command: hover-text
+        text: Search
+        description: search icon or field in the top right corner
+        action: click
+  - prompt: Enter "Surface Laptop accessories" in the search.
+    commands:
+      - command: hover-text
+        text: Search Microsoft.com
+        description: search input field
+        action: click
+      - command: type
+        text: Surface Laptop accessories
+  - prompt: Assert that relevant search results are displayed.
+    commands:
+      - command: assert
+        expect: relevant search results for Surface Laptop accessories are displayed
+  - prompt: Verify no errors on the search results page.
+    commands:
+      - command: assert
+        expect: >-
+          no error messages like 404 or Error are displayed on the search
+          results page
