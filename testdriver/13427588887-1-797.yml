@@ -1,0 +1,31 @@
+version: 4.2.12
+session: 67b6a98bd5cf0ddf3cb40265
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Locate and click the "Accept Cookies" button.
+    commands:
+      - command: hover-text
+        text: Accept Cookies
+        description: accept cookies button in the cookie consent banner
+        action: click
+  - prompt: Assert that the cookie consent banner is dismissed.
+    commands:
+      - command: assert
+        expect: the cookie consent banner is dismissed
+  - prompt: Focus the browser window.
+    commands: []
+  - prompt: Click on the "Contact Sales" button.
+    commands:
+      - command: hover-text
+        text: Contact Sales
+        description: contact sales button in the header
+        action: click
+  - prompt: Assert that the contact form page is displayed.
+    commands:
+      - command: assert
+        expect: >-
+          the contact form page is displayed with "Find out how PubNub can help
+          your business"
