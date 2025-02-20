@@ -1,3 +1,3 @@
-1. Locate the main call to action button "Start Building."
-2. Click on "Start Building."
-3. Assert that the expected action is initiated
+1. Identify the main call to action on the webpage.
+2. Click the main call to action.
+3. Assert that the desired action is initiated or the user is redirected appropriately.

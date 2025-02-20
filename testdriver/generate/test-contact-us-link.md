@@ -1,3 +1,3 @@
-1. Locate the "Contact Sales" link.
-2. Click on "Contact Sales."
-3. Assert that the contact page or form loads successfully.
+1. Locate the "Contact Sales" link in the header.
+2. Click the "Contact Sales" link.
+3. Assert that the contact form page or appropriate section is displayed.
