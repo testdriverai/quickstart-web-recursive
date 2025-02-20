@@ -1,0 +1,41 @@
+version: 4.2.12
+session: 67b6a9c3d10d3ab2f928ba31
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: hover-text
+        text: pubnub.com
+        description: address bar in the browser
+        action: click
+  - prompt: Click on "Products" in the navigation menu.
+    commands:
+      - command: hover-text
+        text: Products
+        description: navigation menu item for products
+        action: click
+  - prompt: Assert that the Products page is displayed.
+    commands:
+      - command: assert
+        expect: Products menu is visible
+  - prompt: Click on "Solutions" in the navigation menu.
+    commands:
+      - command: hover-text
+        text: Solutions
+        description: navigation menu item for solutions
+        action: click
+  - prompt: Assert that the Solutions page is displayed.
+    commands:
+      - command: assert
+        expect: Solutions menu is highlighted
+  - prompt: Focus the browser window.
+    commands: []
+  - prompt: Click on the "Start Building" button.
+    commands:
+      - command: hover-text
+        text: Start Building
+        description: button to start building on the homepage
+        action: click
+  - prompt: Assert that the user is redirected to the builder or sign-up page.
+    commands:
+      - command: assert
+        expect: the user is on the registration page with "Register for free" visible
