@@ -1,0 +1,39 @@
+version: 4.2.12
+session: 67b6a9fdd10d3ab2f928ba7d
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Click on the search icon in the header.
+    commands:
+      - command: hover-image
+        description: search icon in the header
+        action: click
+  - prompt: Type "real-time apps" and press enter.
+    commands:
+      - command: hover-text
+        text: Search or ask anything
+        description: search bar in the header
+        action: click
+      - command: type
+        text: real-time apps
+      - command: press-keys
+        keys:
+          - enter
+  - prompt: Assert that search results are displayed.
+    commands:
+      - command: assert
+        expect: search results are displayed
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Click on "Blog" in the navigation bar.
+    commands:
+      - command: hover-text
+        text: Blog
+        description: blog link in the navigation bar
+        action: click
+      - command: assert
+        expect: Top 5 Ways Fintech Apps Benefit From Realtime
