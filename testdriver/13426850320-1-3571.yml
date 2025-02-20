@@ -1,0 +1,21 @@
+version: 4.2.12
+session: 67b6999d82f9d745f9cc42c9
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Locate the "Contact Sales" button.
+    commands:
+      - command: hover-text
+        text: Contact Sales
+        description: button in the top navigation bar
+        action: click
+  - prompt: Click on "Contact Sales."
+    commands: []
+  - prompt: Assert that the contact page or form is displayed correctly.
+    commands:
+      - command: assert
+        expect: >-
+          the contact form with fields like "First Name" and "Email Address" is
+          visible
