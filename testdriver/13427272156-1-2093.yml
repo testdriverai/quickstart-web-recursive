@@ -1,0 +1,37 @@
+version: 4.2.12
+session: 67b6a21c82f9d745f9cc441a
+steps:
+  - prompt: Locate the cookie consent bar at the bottom.
+    commands:
+      - command: hover-text
+        text: Accept Cookies
+        description: button in the cookie consent bar at the bottom
+        action: hover
+  - prompt: Click "Accept Cookies."
+    commands:
+      - command: hover-text
+        text: Accept Cookies
+        description: button in the cookie consent bar at the bottom
+        action: click
+  - prompt: Assert that the consent bar disappears.
+    commands:
+      - command: assert
+        expect: the "Accept Cookies" button is not visible
+  - prompt: Refresh the page and assert that the consent bar does not reappear.
+    commands:
+      - command: press-keys
+        keys:
+          - control
+          - r
+      - command: assert
+        expect: the "Accept Cookies" button is not visible
+  - prompt: Click on the "Pricing" in the navigation menu.
+    commands:
+      - command: hover-text
+        text: Pricing
+        description: link in the navigation menu
+        action: click
+  - prompt: Assert that the pricing page loads correctly.
+    commands:
+      - command: assert
+        expect: the "Pricing and Support" header is visible
