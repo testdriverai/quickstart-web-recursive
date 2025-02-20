@@ -1,0 +1,37 @@
+version: 4.2.12
+session: 67b6a990d10d3ab2f928ba00
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Locate and click the "Accept Cookies" button.
+    commands:
+      - command: hover-text
+        text: Accept Cookies
+        description: accept cookies button in the cookie consent banner
+        action: click
+  - prompt: Assert that the cookie consent banner is dismissed.
+    commands:
+      - command: assert
+        expect: the cookie consent banner is dismissed
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Click on "Products" in the navigation menu.
+    commands:
+      - command: hover-text
+        text: Products
+        description: products link in the navigation menu
+        action: click
+  - prompt: Assert that the Products page is displayed.
+    commands:
+      - command: assert
+        expect: PUBNUB PLATFORM is visible on the Products page
+  - prompt: Click on "Solutions" in the navigation menu.
+    commands:
+      - command: hover-text
+        text: Solutions
+        description: solutions link in the navigation menu
+        action: click
