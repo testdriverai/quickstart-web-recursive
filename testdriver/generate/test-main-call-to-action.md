@@ -1,3 +1,2 @@
-1. Locate the main call to action button "Start Building."
-2. Click on "Start Building."
-3. Assert that the expected action is initiated
+1. Click on the "Start Building" button.
+2. Assert that the user is redirected to the expected page.
