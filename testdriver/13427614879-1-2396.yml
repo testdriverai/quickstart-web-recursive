@@ -1,0 +1,42 @@
+version: 4.2.12
+session: 67b6a9fad10d3ab2f928ba7a
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Click on the search icon in the header.
+    commands:
+      - command: hover-image
+        description: search icon in the header
+        action: click
+  - prompt: Type "real-time apps" and press enter.
+    commands:
+      - command: hover-text
+        text: Search or ask anything
+        description: search bar in the header
+        action: click
+      - command: type
+        text: real-time apps
+      - command: press-keys
+        keys:
+          - enter
+  - prompt: Assert that search results are displayed.
+    commands:
+      - command: assert
+        expect: search results are displayed
+  - prompt: Focus the browser window.
+    commands:
+      - command: hover-text
+        text: real-time apps
+        description: search input field with text
+        action: click
+  - prompt: Type "real-time apps" and press Enter.
+    commands:
+      - command: press-keys
+        keys:
+          - enter
+  - prompt: Assert that relevant search results are displayed.
+    commands:
+      - command: assert
+        expect: relevant search results for "real-time apps" are displayed
