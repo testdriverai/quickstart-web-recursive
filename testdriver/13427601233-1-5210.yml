@@ -1,0 +1,43 @@
+version: 4.2.12
+session: 67b6a9cbd5cf0ddf3cb402a8
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: hover-text
+        text: pubnub.com
+        description: address bar in the browser
+        action: click
+  - prompt: Click on "Products" in the navigation menu.
+    commands:
+      - command: hover-text
+        text: Products
+        description: navigation menu item for products
+        action: click
+  - prompt: Assert that the Products page is displayed.
+    commands:
+      - command: assert
+        expect: Products menu is visible
+  - prompt: Click on "Solutions" in the navigation menu.
+    commands:
+      - command: hover-text
+        text: Solutions
+        description: navigation menu item for solutions
+        action: click
+  - prompt: Assert that the Solutions page is displayed.
+    commands:
+      - command: assert
+        expect: Solutions menu is highlighted
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Locate and click the "Accept Cookies" button.
+    commands:
+      - command: hover-text
+        text: Accept Cookies
+        description: button to accept cookies at the bottom right of the page
+        action: click
+  - prompt: Assert that the cookie consent banner is dismissed.
+    commands:
+      - command: assert
+        expect: the cookie consent banner is not visible
