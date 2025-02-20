@@ -1,0 +1,59 @@
+version: 4.2.12
+session: 67b766ded10d3ab2f928bfee
+steps:
+  - prompt: Click on "Shop now" for the featured product.
+    commands:
+      - command: hover-text
+        text: Shop now
+        description: button for the featured product
+        action: click
+  - prompt: Assert that the product page loads successfully.
+    commands:
+      - command: assert
+        expect: Surface Laptop is visible on the page
+  - prompt: Verify that product details are displayed correctly.
+    commands:
+      - command: assert
+        expect: Starting From $799.99 is visible on the page
+  - prompt: Click on the "Sign in" button.
+    commands:
+      - command: hover-text
+        text: Sign in
+        description: button in the top right corner for user login
+        action: click
+  - prompt: Navigate to the sign-in page.
+    commands: []
+  - prompt: Enter test credentials and click "Sign In".
+    commands:
+      - command: hover-text
+        text: Email, phone, or Skype
+        description: input field for email or username
+        action: click
+      - command: type
+        text: testuser@example.com
+      - command: hover-text
+        text: Next
+        description: button to proceed after entering email
+        action: click
+  - prompt: Enter test credentials and click "Sign In".
+    commands:
+      - command: hover-text
+        text: Personal account
+        description: option for personal Microsoft account
+        action: click
+  - prompt: Enter test credentials and click "Sign In".
+    commands:
+      - command: hover-text
+        text: Password
+        description: input field for password
+        action: click
+      - command: type
+        text: testpassword123
+      - command: hover-text
+        text: Sign in
+        description: button to submit the password and sign in
+        action: click
+  - prompt: Assert that the user is redirected to their account dashboard.
+    commands: []
+  - prompt: Verify there are no errors in the sign-in process.
+    commands: []
