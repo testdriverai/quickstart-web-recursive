@@ -1,0 +1,41 @@
+version: 4.2.12
+session: 67b766efd10d3ab2f928bff9
+steps:
+  - prompt: Click on "Shop now" for the featured product.
+    commands:
+      - command: hover-text
+        text: Shop now
+        description: button for the featured product
+        action: click
+  - prompt: Assert that the product page loads successfully.
+    commands:
+      - command: assert
+        expect: Surface Laptop is visible on the page
+  - prompt: Verify that product details are displayed correctly.
+    commands:
+      - command: assert
+        expect: Starting From $799.99 is visible on the page
+  - prompt: Click on "Start building yours".
+    commands:
+      - command: hover-text
+        text: Start building yours
+        description: button to customize the Surface Laptop
+        action: click
+  - prompt: Assert that the configuration page is loaded.
+    commands:
+      - command: assert
+        expect: Let's build your new Surface is visible on the page
+  - prompt: Customize the features and proceed.
+    commands:
+      - command: hover-text
+        text: 'No'
+        description: close the survey popup
+        action: click
+      - command: hover-text
+        text: 13.8 inch
+        description: select the 13.8 inch display size
+        action: click
+      - command: hover-text
+        text: No thanks
+        description: close the chat popup
+        action: click
