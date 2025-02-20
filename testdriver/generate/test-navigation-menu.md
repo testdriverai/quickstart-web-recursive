@@ -1,2 +1,1 @@
-1. Identify the navigation menu at the top.
-2. Click on each menu item
+1. Hover over each menu item
