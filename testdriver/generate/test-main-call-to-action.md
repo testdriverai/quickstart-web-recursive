@@ -1,4 +1,4 @@
 1. Focus the browser window.
-2. Locate the "Start Building" button on the homepage.
-3. Click on "Start Building."
-4. Assert that the page navigates correctly to the intended section or page.
+2. Assert that the main call to action "Contact our experts!" is visible.
+3. Click the call to action button if applicable.
+4. Assert that the corresponding form or section loads correctly.
