@@ -1,0 +1,17 @@
+version: 4.2.12
+session: 67b68c39e3225a8c6829cb20
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Click on the "Try for free" button.
+    commands:
+      - command: hover-text
+        text: Try for free
+        description: button in the header for starting a free trial
+        action: click
+  - prompt: Assert that the user is prompted to sign up or redirected appropriately.
+    commands:
+      - command: assert
+        expect: the user is on the registration page with "Register for free" visible
