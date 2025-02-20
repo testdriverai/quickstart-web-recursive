@@ -1,0 +1,44 @@
+version: 4.2.12
+session: 67b6aa00d5cf0ddf3cb40311
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Click on the search icon in the header.
+    commands:
+      - command: hover-image
+        description: search icon in the header
+        action: click
+      - command: hover-image
+        description: search icon in the header
+        action: click
+      - command: type
+        text: real-time apps
+      - command: press-keys
+        keys:
+          - enter
+  - prompt: Assert that search results are displayed.
+    commands:
+      - command: assert
+        expect: search results are displayed
+  - prompt: Focus the browser window.
+    commands:
+      - command: hover-text
+        text: Top 5 Ways Fintech Apps Benefit From Realtime
+        description: first search result title
+        action: click
+  - prompt: Click on the "Contact Sales" button.
+    commands:
+      - command: hover-text
+        text: Contact Sales
+        description: contact sales button in the header
+        action: click
+  - prompt: Assert that the contact form page is displayed.
+    commands:
+      - command: assert
+        expect: the contact form page is displayed
+  - prompt: Assert that the contact form page is displayed.
+    commands:
+      - command: assert
+        expect: the contact form page is displayed
