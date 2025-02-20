@@ -1,0 +1,43 @@
+version: 4.2.12
+session: 67b6a216e3225a8c6829ccf5
+steps:
+  - prompt: Locate the cookie consent bar at the bottom.
+    commands:
+      - command: hover-text
+        text: Accept Cookies
+        description: button in the cookie consent bar at the bottom
+        action: hover
+  - prompt: Click "Accept Cookies."
+    commands:
+      - command: hover-text
+        text: Accept Cookies
+        description: button in the cookie consent bar at the bottom
+        action: click
+  - prompt: Assert that the consent bar disappears.
+    commands:
+      - command: assert
+        expect: the "Accept Cookies" button is not visible
+  - prompt: Refresh the page and assert that the consent bar does not reappear.
+    commands:
+      - command: press-keys
+        keys:
+          - control
+          - r
+      - command: assert
+        expect: the "Accept Cookies" button is not visible
+  - prompt: Assert that the webpage loads successfully.
+    commands:
+      - command: hover-text
+        text: Start Building
+        description: button on the homepage
+        action: hover
+      - command: assert
+        expect: the "Start Building" button is visible
+  - prompt: Assert that the logo is visible at the top left.
+    commands:
+      - command: hover-text
+        text: pubnub
+        description: logo at the top left of the page
+        action: hover
+      - command: assert
+        expect: the "pubnub" logo is visible
