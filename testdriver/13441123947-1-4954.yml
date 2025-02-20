@@ -1,0 +1,23 @@
+version: 4.2.12
+session: 67b766ddd5cf0ddf3cb408ba
+steps:
+  - prompt: Click on "Shop now" for the featured product.
+    commands:
+      - command: hover-text
+        text: Shop now
+        description: button for the featured product
+        action: click
+  - prompt: Assert that the product page loads successfully.
+    commands:
+      - command: assert
+        expect: Surface Laptop is visible on the page
+  - prompt: Verify that product details are displayed correctly.
+    commands:
+      - command: assert
+        expect: Starting From $799.99 is visible on the page
+  - prompt: Click on "Sign in" at the top right corner.
+    commands:
+      - command: hover-text
+        text: Sign in
+        description: sign in link at the top right corner
+        action: click
