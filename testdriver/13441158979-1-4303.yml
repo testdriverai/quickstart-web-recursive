@@ -1,0 +1,46 @@
+version: 4.2.12
+session: 67b76757d10d3ab2f928c03c
+steps:
+  - prompt: Click on the search icon in the header.
+    commands:
+      - command: hover-text
+        text: Search
+        description: search icon in the header
+        action: click
+  - prompt: Type in "Surface Laptop" and press enter.
+    commands:
+      - command: hover-text
+        text: Search Microsoft.com
+        description: search bar in the header
+        action: click
+      - command: type
+        text: Surface Laptop
+      - command: press-keys
+        keys:
+          - enter
+  - prompt: Assert that search results are displayed.
+    commands:
+      - command: assert
+        expect: search results are displayed
+  - prompt: Verify that results are relevant to the search query.
+    commands:
+      - command: assert
+        expect: results include "Surface Laptop"
+  - prompt: Click on "Chat now" in the bottom-right pop-up.
+    commands:
+      - command: hover-text
+        text: Chat now
+        description: chat now button in the bottom-right pop-up
+        action: click
+  - prompt: Assert that the chat window opens.
+    commands:
+      - command: assert
+        expect: chat window is open with greeting message
+  - prompt: Type a test message in the chat.
+    commands:
+      - command: hover-text
+        text: How can we help you?
+        description: chat input field in the chat window
+        action: click
+      - command: type
+        text: This is a test message.
