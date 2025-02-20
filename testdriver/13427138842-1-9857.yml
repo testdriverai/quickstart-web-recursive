@@ -1,0 +1,9 @@
+version: 4.2.12
+session: 67b69f8682f9d745f9cc43b9
+steps:
+  - prompt: Locate the main call to action button "Start Building."
+    commands:
+      - command: hover-text
+        text: Start Building
+        description: main call to action button on the homepage
+        action: click
