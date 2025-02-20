@@ -1,0 +1,38 @@
+version: 4.2.12
+session: 67b7675cd5cf0ddf3cb40922
+steps:
+  - prompt: Click on the search icon in the header.
+    commands:
+      - command: hover-text
+        text: Search
+        description: search icon in the header
+        action: click
+  - prompt: Type in "Surface Laptop" and press enter.
+    commands:
+      - command: hover-text
+        text: Search Microsoft.com
+        description: search bar in the header
+        action: click
+      - command: type
+        text: Surface Laptop
+      - command: press-keys
+        keys:
+          - enter
+  - prompt: Assert that search results are displayed.
+    commands:
+      - command: assert
+        expect: search results are displayed
+  - prompt: Verify that results are relevant to the search query.
+    commands:
+      - command: assert
+        expect: results include "Surface Laptop"
+  - prompt: Click on "Microsoft 365" in the header.
+    commands:
+      - command: hover-text
+        text: Microsoft 365
+        description: Microsoft 365 link in the header
+        action: click
+  - prompt: Assert that the page navigates to the Microsoft 365 section.
+    commands:
+      - command: assert
+        expect: Microsoft 365 for home section is visible
