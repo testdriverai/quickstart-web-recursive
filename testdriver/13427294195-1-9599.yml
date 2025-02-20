@@ -1,0 +1,24 @@
+version: 4.2.12
+session: 67b6a29782f9d745f9cc44e3
+steps:
+  - prompt: Locate the main call to action button "Start Building."
+    commands:
+      - command: hover-text
+        text: Start Building
+        description: main call to action button on the homepage
+        action: click
+      - command: press-keys
+        keys:
+          - control
+          - t
+      - command: type
+        text: https://example.com
+  - prompt: Open the website in a browser.
+    commands:
+      - command: press-keys
+        keys:
+          - enter
+  - prompt: Assert that the webpage loads successfully.
+    commands:
+      - command: assert
+        expect: the text "Example Domain" is visible on the page
