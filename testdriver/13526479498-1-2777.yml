@@ -1,0 +1,41 @@
+version: 4.2.12
+session: 67bdf54de335a37c35651d19
+steps:
+  - prompt: Click on the Search bar in the Dependencies section.
+    commands:
+      - command: hover-text
+        text: Search...
+        description: search bar in the Dependencies section
+        action: click
+  - prompt: Type "@docusaurus/core" into the search field.
+    commands:
+      - command: type
+        text: '@docusaurus/core'
+  - prompt: Assert that the search results display relevant dependencies.
+    commands:
+      - command: assert
+        expect: the search results display "@docusaurus/core"
+      - command: hover-text
+        text: Docusaurus Core
+        description: top search result in the Dependencies section
+        action: click
+  - prompt: Click on the "docs" folder in the explorer.
+    commands:
+      - command: hover-text
+        text: docs
+        description: docs folder in the explorer section
+        action: click
+  - prompt: Assert that the documentation files are displayed.
+    commands:
+      - command: assert
+        expect: tutorial-basics and tutorial-extras are visible in the explorer
+  - prompt: Click on a specific documentation file.
+    commands:
+      - command: hover-text
+        text: tutorial-basics
+        description: tutorial-basics file in the docs folder
+        action: click
+  - prompt: Assert that the file content is loaded in the editor.
+    commands:
+      - command: assert
+        expect: This website is built using Docusaurus
