@@ -1,0 +1,43 @@
+version: 4.2.12
+session: 67bdf549e335a37c35651d08
+steps:
+  - prompt: Click on "Accept all" for the cookies notification.
+    commands:
+      - command: hover-text
+        text: Accept all
+        description: button to accept all cookies in the notification
+        action: click
+  - prompt: Assert that the cookies notification is dismissed.
+    commands:
+      - command: assert
+        expect: the cookies notification is dismissed
+  - prompt: Navigate to a different section on the website.
+    commands:
+      - command: hover-text
+        text: blog
+        description: link to the blog section in the sidebar
+        action: click
+  - prompt: Assert that no cookie notification reappears.
+    commands:
+      - command: assert
+        expect: no cookie notification is visible
+  - prompt: Click on the "docs" folder in the explorer.
+    commands:
+      - command: hover-text
+        text: docs
+        description: folder in the explorer sidebar
+        action: click
+  - prompt: Assert that the documentation files are displayed.
+    commands:
+      - command: assert
+        expect: the documentation files are visible in the explorer
+  - prompt: Click on a specific documentation file.
+    commands:
+      - command: hover-text
+        text: tutorial-basics
+        description: file in the docs folder
+        action: click
+  - prompt: Assert that the file content is loaded in the editor.
+    commands:
+      - command: assert
+        expect: the file content is displayed in the editor
