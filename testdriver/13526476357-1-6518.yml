@@ -1,0 +1,45 @@
+version: 4.2.12
+session: 67bdf53ce335a37c35651ce8
+steps:
+  - prompt: Click on "Manage preferences" in the cookies notification.
+    commands:
+      - command: hover-text
+        text: Manage preferences
+        description: button in the cookies notification
+        action: click
+  - prompt: Assert that a preferences dialog opens.
+    commands:
+      - command: assert
+        expect: Cookie preferences dialog is visible
+  - prompt: Change a preference setting within the dialog.
+    commands:
+      - command: hover-text
+        text: Analytical cookies
+        description: toggle for analytical cookies in the preferences dialog
+        action: click
+  - prompt: Save the changes and close the dialog.
+    commands:
+      - command: hover-text
+        text: Save preferences
+        description: button in the cookie preferences dialog
+        action: click
+  - prompt: Click on the "docs" folder in the explorer.
+    commands:
+      - command: hover-text
+        text: docs
+        description: folder in the explorer
+        action: click
+  - prompt: Assert that the documentation files are displayed.
+    commands:
+      - command: assert
+        expect: tutorial-basics and tutorial-extras are visible in the docs folder
+  - prompt: Click on a specific documentation file.
+    commands:
+      - command: hover-text
+        text: tutorial-basics
+        description: file in the docs folder
+        action: click
+  - prompt: Assert that the file content is loaded in the editor.
+    commands:
+      - command: assert
+        expect: Website is visible in the editor
