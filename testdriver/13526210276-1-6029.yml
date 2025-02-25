@@ -1,0 +1,13 @@
+version: 4.2.12
+session: 67bdf2268dfb545182f1835c
+steps:
+  - prompt: Click on the "Sign In" button at the top right.
+    commands:
+      - command: hover-text
+        text: Sign In
+        description: sign in button at the top right of the header
+        action: click
+  - prompt: Assert that the sign-in page or modal is displayed.
+    commands:
+      - command: assert
+        expect: the sign-in page or modal is displayed with "Sign in to CodeSandbox"
