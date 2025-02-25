@@ -1,0 +1,39 @@
+version: 4.2.12
+session: 67bdf553e335a37c35651d25
+steps:
+  - prompt: Click on the Search bar in the Dependencies section.
+    commands:
+      - command: hover-text
+        text: Search...
+        description: search bar in the Dependencies section
+        action: click
+  - prompt: Type "@docusaurus/core" into the search field.
+    commands:
+      - command: type
+        text: '@docusaurus/core'
+  - prompt: Assert that the search results display relevant dependencies.
+    commands:
+      - command: assert
+        expect: the search results display "@docusaurus/core"
+      - command: hover-text
+        text: Docusaurus Core
+        description: top search result in the Dependencies section
+        action: click
+  - prompt: Click on "Docusaurus Tutorial - 5min" button.
+    commands:
+      - command: hover-text
+        text: Docusaurus Tutorial - 5min
+        description: button for starting the Docusaurus tutorial
+        action: click
+  - prompt: Assert that the tutorial page is displayed.
+    commands:
+      - command: assert
+        expect: the tutorial page displays "Tutorial Intro"
+  - prompt: Assert that the tutorial content is loaded properly without errors.
+    commands:
+      - command: assert
+        expect: the tutorial content displays "Tutorial Intro"
+  - prompt: Verify the tutorial title matches expectations.
+    commands:
+      - command: assert
+        expect: the tutorial title is "Tutorial Intro"
