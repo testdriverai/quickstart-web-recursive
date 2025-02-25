@@ -1,0 +1,51 @@
+version: 4.2.12
+session: 67bdf5688dfb545182f1846c
+steps:
+  - prompt: Click on the Search bar in the Dependencies section.
+    commands:
+      - command: hover-text
+        text: Search...
+        description: search bar in the Dependencies section
+        action: click
+  - prompt: Type "@docusaurus/core" into the search field.
+    commands:
+      - command: type
+        text: '@docusaurus/core'
+  - prompt: Assert that the search results display relevant dependencies.
+    commands:
+      - command: assert
+        expect: the search results display "@docusaurus/core"
+      - command: hover-text
+        text: Docusaurus Core
+        description: top search result in the Dependencies section
+        action: click
+  - prompt: Click on the "Sign In" button at the top right.
+    commands:
+      - command: hover-text
+        text: Sign In
+        description: sign in button at the top right of the header
+        action: click
+  - prompt: Assert that the sign-in page or modal is displayed.
+    commands:
+      - command: assert
+        expect: the sign-in page or modal is displayed with "Sign in to CodeSandbox"
+  - prompt: Enter test credentials into the fields.
+    commands:
+      - command: hover-text
+        text: Sign in with GitHub
+        description: GitHub sign-in button
+        action: click
+      - command: wait
+        timeout: 2000
+      - command: hover-text
+        text: Username or email address
+        description: username input field
+        action: click
+      - command: type
+        text: test@example.com
+      - command: hover-text
+        text: Password
+        description: password input field
+        action: click
+      - command: type
+        text: password123
