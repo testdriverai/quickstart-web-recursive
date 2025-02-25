@@ -1,0 +1,21 @@
+version: 4.2.12
+session: 67bdf223e335a37c35651c3a
+steps:
+  - prompt: Click on the Search bar in the Dependencies section.
+    commands:
+      - command: hover-text
+        text: Search...
+        description: search bar in the Dependencies section
+        action: click
+  - prompt: Type "@docusaurus/core" into the search field.
+    commands:
+      - command: type
+        text: '@docusaurus/core'
+  - prompt: Assert that the search results display relevant dependencies.
+    commands:
+      - command: assert
+        expect: the search results display "@docusaurus/core"
+      - command: hover-text
+        text: Docusaurus Core
+        description: top search result in the Dependencies section
+        action: click
