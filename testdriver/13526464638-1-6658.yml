@@ -1,0 +1,35 @@
+version: 4.2.12
+session: 67bdf5218dfb545182f183dc
+steps:
+  - prompt: Click on the "Sign In" button at the top right.
+    commands:
+      - command: hover-text
+        text: Sign In
+        description: sign in button at the top right of the header
+        action: click
+  - prompt: Assert that the sign-in page or modal is displayed.
+    commands:
+      - command: assert
+        expect: the sign-in page or modal is displayed with "Sign in to CodeSandbox"
+  - prompt: Click on "Sign in with Google".
+    commands:
+      - command: hover-text
+        text: Sign in with Google
+        description: Google sign-in button on the modal
+        action: click
+  - prompt: Assert that Google's login page is displayed.
+    commands:
+      - command: assert
+        expect: Google's login page is displayed with "Sign in"
+  - prompt: Enter valid Google credentials.
+    commands:
+      - command: hover-text
+        text: Email or phone
+        description: email input field on Google sign-in page
+        action: click
+      - command: type
+        text: testuser@gmail.com
+      - command: hover-text
+        text: Next
+        description: next button on Google sign-in page
+        action: click
