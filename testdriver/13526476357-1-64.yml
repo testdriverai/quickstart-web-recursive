@@ -1,0 +1,47 @@
+version: 4.2.12
+session: 67bdf5788dfb545182f18490
+steps:
+  - prompt: Click on "Manage preferences" in the cookies notification.
+    commands:
+      - command: hover-text
+        text: Manage preferences
+        description: button in the cookies notification
+        action: click
+  - prompt: Assert that a preferences dialog opens.
+    commands:
+      - command: assert
+        expect: Cookie preferences dialog is visible
+  - prompt: Change a preference setting within the dialog.
+    commands:
+      - command: hover-text
+        text: Analytical cookies
+        description: toggle for analytical cookies in the preferences dialog
+        action: click
+  - prompt: Save the changes and close the dialog.
+    commands:
+      - command: hover-text
+        text: Save preferences
+        description: button in the cookie preferences dialog
+        action: click
+  - prompt: Click on the "Sign In" button at the top right.
+    commands:
+      - command: hover-text
+        text: Sign In
+        description: button at the top right of the browser window
+        action: click
+  - prompt: Assert that the sign-in page or modal is displayed.
+    commands:
+      - command: assert
+        expect: the sign-in modal for CodeSandbox is visible
+      - command: hover-text
+        text: Sign in with GitHub
+        description: button to sign in using GitHub
+        action: click
+      - command: type
+        text: test@example.com
+      - command: hover-text
+        text: Password
+        description: password input field
+        action: click
+      - command: type
+        text: password123
