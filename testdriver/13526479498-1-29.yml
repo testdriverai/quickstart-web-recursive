@@ -1,0 +1,45 @@
+version: 4.2.12
+session: 67bdf594e335a37c35651dc9
+steps:
+  - prompt: Click on the Search bar in the Dependencies section.
+    commands:
+      - command: hover-text
+        text: Search...
+        description: search bar in the Dependencies section
+        action: click
+  - prompt: Type "@docusaurus/core" into the search field.
+    commands:
+      - command: type
+        text: '@docusaurus/core'
+  - prompt: Assert that the search results display relevant dependencies.
+    commands:
+      - command: assert
+        expect: the search results display "@docusaurus/core"
+      - command: hover-text
+        text: Docusaurus Core
+        description: top search result in the Dependencies section
+        action: click
+  - prompt: Click on "Accept all" for the cookies notification.
+    commands:
+      - command: hover-text
+        text: Accept all
+        description: accept all cookies button in the cookies notification
+        action: click
+  - prompt: Assert that the cookies notification is dismissed.
+    commands:
+      - command: assert
+        expect: the cookies notification is not visible
+  - prompt: Navigate to a different section on the website.
+    commands:
+      - command: hover-text
+        text: docs
+        description: docs link in the sidebar
+        action: click
+  - prompt: Assert that no cookie notification reappears.
+    commands:
+      - command: assert
+        expect: the cookies notification is not visible
+  - prompt: Assert that no cookie notification reappears.
+    commands:
+      - command: assert
+        expect: the cookies notification is not visible
