@@ -1,0 +1,31 @@
+version: 4.2.12
+session: 67bdf53f8dfb545182f183ff
+steps:
+  - prompt: Click on "Manage preferences" in the cookies notification.
+    commands:
+      - command: hover-text
+        text: Manage preferences
+        description: button in the cookies notification
+        action: click
+  - prompt: Assert that a preferences dialog opens.
+    commands:
+      - command: assert
+        expect: Cookie preferences dialog is visible
+  - prompt: Change a preference setting within the dialog.
+    commands:
+      - command: hover-text
+        text: Analytical cookies
+        description: toggle for analytical cookies in the preferences dialog
+        action: click
+  - prompt: Save the changes and close the dialog.
+    commands:
+      - command: hover-text
+        text: Save preferences
+        description: button in the cookie preferences dialog
+        action: click
+  - prompt: Click on a link in the sidebar
+    commands:
+      - command: hover-text
+        text: docs
+        description: link in the sidebar
+        action: click
