@@ -1,0 +1,29 @@
+version: 4.2.12
+session: 67bdf525e335a37c35651cd4
+steps:
+  - prompt: Click on the "Sign In" button at the top right.
+    commands:
+      - command: hover-text
+        text: Sign In
+        description: sign in button at the top right of the header
+        action: click
+  - prompt: Assert that the sign-in page or modal is displayed.
+    commands:
+      - command: assert
+        expect: the sign-in page or modal is displayed with "Sign in to CodeSandbox"
+  - prompt: Locate the cookie consent banner.
+    commands:
+      - command: hover-text
+        text: Yes, we use cookies
+        description: cookie consent banner at the bottom of the page
+        action: hover
+  - prompt: Click on "Reject all" cookies.
+    commands:
+      - command: hover-text
+        text: Reject all
+        description: reject all cookies button in the cookie consent banner
+        action: click
+  - prompt: Assert that the cookie consent banner disappears.
+    commands:
+      - command: assert
+        expect: the cookie consent banner is not visible
