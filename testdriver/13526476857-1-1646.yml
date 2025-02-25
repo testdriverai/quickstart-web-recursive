@@ -1,0 +1,37 @@
+version: 4.2.12
+session: 67bdf54e8dfb545182f18425
+steps:
+  - prompt: Click on "Accept all" for the cookies notification.
+    commands:
+      - command: hover-text
+        text: Accept all
+        description: button to accept all cookies in the notification
+        action: click
+  - prompt: Assert that the cookies notification is dismissed.
+    commands:
+      - command: assert
+        expect: the cookies notification is dismissed
+  - prompt: Navigate to a different section on the website.
+    commands:
+      - command: hover-text
+        text: blog
+        description: link to the blog section in the sidebar
+        action: click
+  - prompt: Assert that no cookie notification reappears.
+    commands:
+      - command: assert
+        expect: no cookie notification is visible
+  - prompt: Navigate to different sections of the website using the sidebar.
+    commands:
+      - command: hover-text
+        text: docs
+        description: link to the docs section in the sidebar
+        action: click
+  - prompt: Assert that each section loads without errors.
+    commands:
+      - command: assert
+        expect: Website is visible in the docs section
+  - prompt: Check that the content matches the section description.
+    commands:
+      - command: assert
+        expect: Website is visible in the docs section
