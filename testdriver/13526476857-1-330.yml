@@ -1,0 +1,105 @@
+version: 4.2.12
+session: 67bdf585e335a37c35651d9e
+steps:
+  - prompt: Click on "Accept all" for the cookies notification.
+    commands:
+      - command: hover-text
+        text: Accept all
+        description: button to accept all cookies in the notification
+        action: click
+  - prompt: Assert that the cookies notification is dismissed.
+    commands:
+      - command: assert
+        expect: the cookies notification is dismissed
+  - prompt: Navigate to a different section on the website.
+    commands:
+      - command: hover-text
+        text: blog
+        description: link to the blog section in the sidebar
+        action: click
+  - prompt: Assert that no cookie notification reappears.
+    commands:
+      - command: assert
+        expect: no cookie notification is visible
+  - prompt: Click on the "Sign In" button at the top right.
+    commands:
+      - command: hover-text
+        text: Sign In
+        description: button to sign in at the top right of the header
+        action: click
+  - prompt: Assert that the sign-in page or modal is displayed.
+    commands:
+      - command: assert
+        expect: the sign-in page is displayed with "Sign in to CodeSandbox"
+      - command: hover-text
+        text: Sign in with GitHub
+        description: button to sign in using GitHub on the sign-in modal
+        action: click
+      - command: type
+        text: test@example.com
+      - command: hover-text
+        text: Password
+        description: password input field in the sign-in modal
+        action: click
+      - command: type
+        text: TestPassword123
+  - prompt: Submit the sign-in form.
+    commands:
+      - command: hover-text
+        text: Sign in
+        description: button to submit the sign-in form
+        action: click
+  - prompt: Submit the sign-in form.
+    commands:
+      - command: hover-text
+        text: Username or email address
+        description: email input field in the GitHub sign-in modal
+        action: click
+      - command: type
+        text: test@example.com
+      - command: hover-text
+        text: Password
+        description: password input field in the GitHub sign-in modal
+        action: click
+      - command: type
+        text: TestPassword123
+      - command: hover-text
+        text: Sign in
+        description: button to submit the GitHub sign-in form
+        action: click
+  - prompt: Submit the sign-in form.
+    commands:
+      - command: hover-text
+        text: Username or email address
+        description: email input field in the GitHub sign-in modal
+        action: click
+      - command: type
+        text: test@example.com
+      - command: hover-text
+        text: Password
+        description: password input field in the GitHub sign-in modal
+        action: click
+      - command: type
+        text: CorrectPassword123
+      - command: hover-text
+        text: Sign in
+        description: button to submit the GitHub sign-in form
+        action: click
+  - prompt: Submit the sign-in form.
+    commands:
+      - command: hover-text
+        text: Username or email address
+        description: email input field in the GitHub sign-in modal
+        action: click
+      - command: type
+        text: correct@example.com
+      - command: hover-text
+        text: Password
+        description: password input field in the GitHub sign-in modal
+        action: click
+      - command: type
+        text: CorrectPassword123
+      - command: hover-text
+        text: Sign in
+        description: button to submit the GitHub sign-in form
+        action: click
