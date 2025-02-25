@@ -1,0 +1,33 @@
+version: 4.2.12
+session: 67bdf22be335a37c35651c3c
+steps:
+  - prompt: Click on the "docs" folder in the explorer.
+    commands:
+      - command: hover-text
+        text: docs
+        description: folder in the explorer
+        action: click
+  - prompt: Assert that the documentation files are displayed.
+    commands:
+      - command: assert
+        expect: >-
+          the documentation files like "tutorial-basics" and "tutorial-extras"
+          are displayed
+  - prompt: Click on a specific documentation file.
+    commands:
+      - command: hover-text
+        text: tutorial-basics
+        description: file in the docs folder
+        action: click
+  - prompt: Click on a specific documentation file.
+    commands:
+      - command: hover-text
+        text: tutorial-basics
+        description: file under the docs folder
+        action: click
+  - prompt: Assert that the file content is loaded in the editor.
+    commands:
+      - command: assert
+        expect: >-
+          the file content with headings like "Website" and "Installation" is
+          displayed in the editor
