@@ -1,0 +1,41 @@
+version: 4.2.12
+session: 67bdf558e335a37c35651d38
+steps:
+  - prompt: Click on the Search bar in the Dependencies section.
+    commands:
+      - command: hover-text
+        text: Search...
+        description: search bar in the Dependencies section
+        action: click
+  - prompt: Type "@docusaurus/core" into the search field.
+    commands:
+      - command: type
+        text: '@docusaurus/core'
+  - prompt: Assert that the search results display relevant dependencies.
+    commands:
+      - command: assert
+        expect: the search results display "@docusaurus/core"
+      - command: hover-text
+        text: Docusaurus Core
+        description: top search result in the Dependencies section
+        action: click
+  - prompt: Click on the "Docusaurus" link in the "Website" section.
+    commands:
+      - command: hover-text
+        text: Docusaurus
+        description: link in the Website section
+        action: click
+  - prompt: Assert that the Docusaurus documentation page is opened in a new tab.
+    commands:
+      - command: assert
+        expect: the Docusaurus documentation page is visible
+  - prompt: Verify the page loads completely without errors.
+    commands:
+      - command: assert
+        expect: the page displays "My Site" and "Dinosaurs are cool"
+  - prompt: Assert the correct documentation content is visible.
+    commands:
+      - command: assert
+        expect: >-
+          the page displays "Website" and "This website is built using
+          Docusaurus"
