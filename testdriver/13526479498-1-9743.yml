@@ -1,0 +1,54 @@
+version: 4.2.12
+session: 67bdf554e335a37c35651d2d
+steps:
+  - prompt: Click on the Search bar in the Dependencies section.
+    commands:
+      - command: hover-text
+        text: Search...
+        description: search bar in the Dependencies section
+        action: click
+  - prompt: Type "@docusaurus/core" into the search field.
+    commands:
+      - command: type
+        text: '@docusaurus/core'
+  - prompt: Assert that the search results display relevant dependencies.
+    commands:
+      - command: assert
+        expect: the search results display "@docusaurus/core"
+      - command: hover-text
+        text: Docusaurus Core
+        description: top search result in the Dependencies section
+        action: click
+  - prompt: Navigate to the "Build" section in the README.
+    commands:
+      - command: scroll-until-text
+        text: Build
+        direction: down
+        method: keyboard
+  - prompt: Verify the instructions provided for building the application.
+    commands:
+      - command: scroll-until-text
+        text: Build
+        direction: down
+        method: keyboard
+      - command: hover-text
+        text: $ yarn build
+        description: build command in the README
+        action: hover
+  - prompt: Assert the build instructions are clear and accurate.
+    commands:
+      - command: assert
+        expect: the build instructions include "$ yarn build" and a description
+      - command: hover-text
+        text: TERMINAL
+        description: terminal tab in the editor
+        action: click
+      - command: type
+        text: yarn build
+      - command: press-keys
+        keys:
+          - enter
+      - command: wait
+        timeout: 10000
+      - command: assert
+        expect: build completed successfully without errors
