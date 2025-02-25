@@ -1,0 +1,35 @@
+version: 4.2.12
+session: 67bdf5508dfb545182f1842b
+steps:
+  - prompt: Click on "Manage preferences" in the cookies notification.
+    commands:
+      - command: hover-text
+        text: Manage preferences
+        description: button in the cookies notification
+        action: click
+  - prompt: Assert that a preferences dialog opens.
+    commands:
+      - command: assert
+        expect: Cookie preferences dialog is visible
+  - prompt: Change a preference setting within the dialog.
+    commands:
+      - command: hover-text
+        text: Analytical cookies
+        description: toggle for analytical cookies in the preferences dialog
+        action: click
+  - prompt: Save the changes and close the dialog.
+    commands:
+      - command: hover-text
+        text: Save preferences
+        description: button in the cookie preferences dialog
+        action: click
+  - prompt: Click on "Docusaurus Tutorial - 5min" button.
+    commands:
+      - command: hover-text
+        text: Docusaurus Tutorial - 5min
+        description: button on the webpage
+        action: click
+  - prompt: Assert that the tutorial page opens successfully.
+    commands:
+      - command: assert
+        expect: Tutorial Intro is visible
