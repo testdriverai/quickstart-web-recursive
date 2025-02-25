@@ -1,0 +1,47 @@
+version: 4.2.12
+session: 67bdf54e8dfb545182f18427
+steps:
+  - prompt: Click on the Search bar in the Dependencies section.
+    commands:
+      - command: hover-text
+        text: Search...
+        description: search bar in the Dependencies section
+        action: click
+  - prompt: Type "@docusaurus/core" into the search field.
+    commands:
+      - command: type
+        text: '@docusaurus/core'
+  - prompt: Assert that the search results display relevant dependencies.
+    commands:
+      - command: assert
+        expect: the search results display "@docusaurus/core"
+      - command: hover-text
+        text: Docusaurus Core
+        description: top search result in the Dependencies section
+        action: click
+  - prompt: Click on "Manage preferences" in the cookies notification.
+    commands:
+      - command: hover-text
+        text: Manage preferences
+        description: manage preferences button in the cookies notification
+        action: click
+  - prompt: Assert that a preferences dialog opens.
+    commands:
+      - command: assert
+        expect: the preferences dialog is open
+  - prompt: Change a preference setting within the dialog.
+    commands:
+      - command: hover-text
+        text: Analytical cookies
+        description: toggle switch for analytical cookies
+        action: click
+  - prompt: Save the changes and close the dialog.
+    commands:
+      - command: hover-text
+        text: Save preferences
+        description: button to save cookie preferences
+        action: click
+  - prompt: Assert that preferences are applied.
+    commands:
+      - command: assert
+        expect: the preferences dialog is closed and changes are applied
