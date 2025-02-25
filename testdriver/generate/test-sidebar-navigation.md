@@ -1,0 +1,1 @@
+1. Click on a link in the sidebar
