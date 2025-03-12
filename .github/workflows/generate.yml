@@ -95,7 +95,7 @@ jobs:
               }
               results.push(item);
             }
-            return JSON.stringify(results, null, 2);
+            return results;
 
       - id: trigger-next-workflows
         name: Trigger Next Workflows
@@ -105,12 +105,12 @@ jobs:
           RESULTS: ${{ steps.create-dispatch-ids.outputs.result }}
           TOKEN: ${{ secrets.GH_PAT_TOKEN || secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
         with:
-          result-encoding: string
           retries: 5
           retry-exempt-status-codes: 401,403
           script: |
             const dispatched = [];
             for (const item of JSON.parse(process.env.RESULTS)) {
+              console.log(`Dispatching workflow for branch: ${item.branch}`);
               const success = await github.rest.actions.createWorkflowDispatch({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -126,14 +126,13 @@ jobs:
                 .then(() => true)
                 .catch(() => false)
 
-              if(!success){
-                continue;
-              }
+              console.log(`Success: ${success}`);
 
-              console.log(`Dispatched workflow for branch: ${item.branch}`);
-              dispatched.push(item);
+              if(success){
+                dispatched.push(item);
+              }
             }
-            return JSON.stringify(dispatched, null, 2);
+            return dispatched;
 
       - id: save-results
         uses: actions/github-script@v6
@@ -141,7 +140,7 @@ jobs:
           RESULTS: ${{ steps.trigger-next-workflows.outputs.result || steps.create-dispatch-ids.outputs.result }}
         with:
           script: |
-            fs.writeFileSync('results.json', process.env.RESULTS);
+            require('fs').writeFileSync('results.json', process.env.RESULTS);
 
       - id: upload-results
         name: Upload Results
@@ -149,3 +148,139 @@ jobs:
         with:
           name: results.json
           path: results.json
+
+      - name: Exit if we're not in the root depth
+        if: ${{ inputs.depth != '1' || inputs.max-depth == '1' }}
+        run: |
+          echo "Not in the root depth, exiting"
+          exit 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install uzip
+
+      - name: Wait for all workflows to complete
+        uses: actions/github-script@v6
+        env:
+          DISPATCHED_WORKFLOWS: ${{ steps.trigger-next-workflows.outputs.result }}
+          TOKEN: ${{ secrets.GH_PAT_TOKEN || secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
+        with:
+          result-encoding: string
+          retries: 5
+          retry-exempt-status-codes: 401,403          
+          script: |
+            const UZip = require("uzip");
+
+            const data = [];
+            const runsMap = new Map();
+            const results = new Map();
+            const previousData = JSON.parse(process.env.DISPATCHED_WORKFLOWS);
+            const dispatchIds = previousData.map((item) => item.dispatchId);
+
+            const getMatchedRuns = () => [...runsMap.values()].filter((run) => run.dispatchId);
+            const getCompletedMatchedRuns = () => getMatchedRuns().filter((run) => run.conclusion !== null);
+
+            const getUnstartedDispatchIds = () =>
+              dispatchIds.filter((dispatchId) => {
+                return ![...runsMap.values()].find((run) => run.dispatchId === dispatchId);
+              });
+
+            const listWorkflows = async () =>
+              await github.rest.actions
+                .listWorkflowRuns({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  workflow_id: "generate.yml",
+                  event: "workflow_dispatch",
+                  per_page: 100,
+                })
+                .then(({ data: { workflow_runs: runs } }) => runs);
+
+            const listWorkflowJobs = async (runId) =>
+              await github.rest.actions
+                .listJobsForWorkflowRun({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  run_id: runId,
+                })
+                .then(({ data: { jobs } }) => jobs);
+
+            const getResult = async (runId) => {
+              const {
+                data: {
+                  artifacts: [artifact],
+                },
+              } = await github.rest.actions.listWorkflowRunArtifacts({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                run_id: runId,
+                name: "results.json",
+              });
+
+              if (!artifact) {
+                return null;
+              }
+
+              const downloaded = await github.rest.actions.downloadArtifact({
+                artifact_id: artifact.id,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                archive_format: "zip",
+              });
+
+              let unzippedData = UZip.parse(downloaded.data);
+              const results = new TextDecoder().decode(unzippedData["results.json"]);
+
+              return JSON.parse(results);
+            };
+
+            while (getCompletedMatchedRuns().length < dispatchIds.length) {
+              await new Promise((resolve) => setTimeout(resolve, 10000));
+
+              const unstartedDispatchIds = getUnstartedDispatchIds();
+              if (unstartedDispatchIds.length !== 0) {
+                console.log(`Waiting for ${unstartedDispatchIds.length} workflows to get started...`);
+              }
+
+              const startedRuns = getMatchedRuns();
+              const completedRuns = getCompletedMatchedRuns();
+              const pendingRuns = startedRuns.length - completedRuns.length;
+              if (pendingRuns !== 0) {
+                console.log(`Waiting for ${pendingRuns} workflows to complete...`);
+              }
+
+              const runs = await listWorkflows();
+
+              for (const run of runs) {
+                if (runsMap.get(run.id)) {
+                  const { dispatchId } = runsMap.get(run.id);
+                  runsMap.set({ ...run, dispatchId });
+
+                  if (dispatchId) {
+                    if (run.status === "completed" && run.conclusion === "success" && !results.get(dispatchId)) {
+                      const runResults = await getResult(run.id);
+                      if (runResults) {
+                        results.set(dispatchId, runResults);
+                        data.push(...runResults);
+                        dispatchIds.push(...runResults.map((item) => item.dispatchId));
+                        console.log(`Added ${runResults.length} workflow runs to the watchlist`);
+                      }
+                    }
+                    continue;
+                  }
+                }
+
+                const jobs = await listWorkflowJobs(run.id);
+
+                const dispatchId = jobs
+                  .find((job) => job.name === "match-dispatchId")
+                  ?.steps.find((step) => step.name.startsWith("dispatchId:"))
+                  ?.name.split("dispatchId:")[1];
+
+                runsMap.set(run.id, { ...run, dispatchId });
+              }
+            }

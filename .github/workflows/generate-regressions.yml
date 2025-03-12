@@ -95,7 +95,7 @@ jobs:
             ${{ env.MARKDOWN_CONTENT }}
             1. /summarize
           prerun: |
-            yarn global add https://github.com/testdriverai/testdriverai#yassine/embed-tests
+            yarn global add https://github.com/testdriverai/testdriverai#yassine/improvements
             cd $env:TEMP
             npm init -y
             npm install dashcam-chrome
