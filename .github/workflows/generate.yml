@@ -57,23 +57,22 @@ jobs:
       TESTDRIVER_API_KEY: ${{ secrets.TESTDRIVER_API_KEY }}
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  generate-next-depth:
+  finalize:
     if: ${{inputs.depth != inputs.max-depth}}
-    name: Trigger Next Level
+    name: Finalize
     needs: generate-regression
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Next Depth of Workflows
-        if: ${{ inputs.depth != inputs.max-depth }}
+      - id: create-dispatch-ids
+        name: Create Dispatch IDs
         uses: actions/github-script@v6
         env:
           RESULTS: ${{ needs.generate-regression.outputs.results }}
-          TOKEN: ${{ secrets.GH_PAT_TOKEN }}
+          DEPTH: ${{ inputs.depth }}
+          MAX_DEPTH: ${{ inputs.max-depth }}
         with:
-          github-token: ${{ secrets.GH_PAT_TOKEN }}
           script: |
             const results = [];
-
             for (const item of JSON.parse(process.env.RESULTS)) {
               // Check if branch exists
               const branchExists = await github.rest.repos.getBranch({
@@ -85,40 +84,67 @@ jobs:
                 .catch(()=>false)
               
               if(!branchExists) {
-                console.log(`Branch ${item.branch} does not exist, skipping workflow dispatch`);
+                console.log(`Branch ${item.branch} does not exist, skipping it`);
                 continue              
               }
-
-              const dispatchId = Math.random().toString(36).substring(2, 15);
-
-              // Branch exists, dispatch workflow
-              const response = await fetch(`https://api.github.com/repos/${context.repo.owner}/${context.repo.repo}/actions/workflows/generate.yml/dispatches`, {
-                method: 'POST',
-                headers: {
-                  'Authorization': `Bearer ${process.env.TOKEN ?? github.token}`,
-                  'Accept': 'application/vnd.github.v3+json'
-                },
-                body: JSON.stringify({
-                  ref: item.branch,
-                  inputs: {
-                    "dispatchId": dispatchId,
-                    "depth": "" + (${{ inputs.depth }} + 1),
-                    "max-depth": "" + ${{ inputs.max-depth }},
-                    "previous-file": item.filename
-                  }
-                })
-              });
-              console.log("----------------------------------")
-              console.log(response.status, await response.text());
-              console.log(`Dispatched workflow for branch: ${item.branch}`);
-              results.push({
-                ...item,
-                dispatchId: dispatchId
-              });
+                
+              item.depth = parseInt(process.env.DEPTH);
+              item.maxDepth = parseInt(process.env.MAX_DEPTH);
+              if(item.depth < item.maxDepth) {
+                item.dispatchId = Math.random().toString(36).substring(2, 15);
+              }
+              results.push(item);
             }
-            require('fs').writeFileSync('results.json', JSON.stringify(results, null, 2));
+            return JSON.stringify(results, null, 2);
 
-      - name: Upload Results
+      - id: trigger-next-workflows
+        name: Trigger Next Workflows
+        if: ${{ inputs.depth != inputs.max-depth }}
+        uses: actions/github-script@v6
+        env:
+          RESULTS: ${{ steps.create-dispatch-ids.outputs.result }}
+          TOKEN: ${{ secrets.GH_PAT_TOKEN || secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
+        with:
+          result-encoding: string
+          retries: 5
+          retry-exempt-status-codes: 401,403
+          script: |
+            const dispatched = [];
+            for (const item of JSON.parse(process.env.RESULTS)) {
+              const success = await github.rest.actions.createWorkflowDispatch({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: 'generate.yml',
+                ref: item.branch,
+                inputs: {
+                  dispatchId: item.dispatchId,
+                  depth: `${item.depth + 1}`,
+                  "max-depth": `${item.maxDepth}`,
+                  "previous-file": item.filename,
+                }
+              })
+                .then(() => true)
+                .catch(() => false)
+
+              if(!success){
+                continue;
+              }
+
+              console.log(`Dispatched workflow for branch: ${item.branch}`);
+              dispatched.push(item);
+            }
+            return JSON.stringify(dispatched, null, 2);
+
+      - id: save-results
+        uses: actions/github-script@v6
+        env:
+          RESULTS: ${{ steps.trigger-next-workflows.outputs.result || steps.create-dispatch-ids.outputs.result }}
+        with:
+          script: |
+            fs.writeFileSync('results.json', process.env.RESULTS);
+
+      - id: upload-results
+        name: Upload Results
         uses: actions/upload-artifact@v4
         with:
           name: results.json
