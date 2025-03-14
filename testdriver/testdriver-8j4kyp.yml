@@ -1,0 +1,23 @@
+version: 4.2.12
+session: 67d4c05f83a17f660c705f09
+steps:
+  - prompt: login with username "alex" and password "foo"
+    commands:
+      - command: hover-text
+        text: Enter username or email
+        description: username input field
+        action: click
+  - prompt: login with username "alex" and password "foo"
+    commands:
+      - command: type
+        text: alex
+      - command: hover-text
+        text: Enter your password
+        description: password input field
+        action: click
+      - command: type
+        text: foo
+      - command: hover-text
+        text: Login
+        description: login button
+        action: click
