@@ -89,7 +89,6 @@ jobs:
           key: ${{ secrets.TESTDRIVER_API_KEY }}
           prompt: ${{ fromJson(steps.create-prompt.outputs.result) }}
           prerun: |
-            yarn global add https://github.com/testdriverai/testdriverai#yassine/embed-tests
             cd $env:TEMP
             npm init -y
             npm install dashcam-chrome
