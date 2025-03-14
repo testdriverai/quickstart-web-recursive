@@ -84,7 +84,8 @@ jobs:
 
       - uses: testdriverai/action@main
         continue-on-error: true
-        with:
+        with: 
+          version: 4.2.15
           key: ${{ secrets.TESTDRIVER_API_KEY }}
           prompt: ${{ fromJson(steps.create-prompt.outputs.result) }}
           prerun: |
