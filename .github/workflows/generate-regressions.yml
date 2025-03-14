@@ -90,6 +90,7 @@ jobs:
         uses: testdriverai/action@main
         continue-on-error: true
         with:
+          version: 4.2.12
           key: ${{ secrets.TESTDRIVER_API_KEY }}
           prompt: |
             ${{ env.MARKDOWN_CONTENT }}
