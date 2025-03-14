@@ -163,7 +163,7 @@ jobs:
           retries: 5
           retry-exempt-status-codes: 401,403          
           script: |
-            const UZip = require("uzip");
+            const UZip = require('uzip');
 
             const previousData = JSON.parse(process.env.DISPATCHED_WORKFLOWS);
             const dispatchIds = previousData.map((item) => item.dispatchId);
@@ -181,21 +181,42 @@ jobs:
               pullRequests: run.pull_requests,
             });
 
-            const getUnstartedDispatchIds = () =>
-              dispatchIds.filter((dispatchId) => {
-                return ![...runsMap.values()].find((run) => run.dispatchId === dispatchId);
-              });
+            const listWorkflows = async () => {
+              let page = 1;
+              const set = new Set();
+              const allRuns = [];
 
-            const listWorkflows = async () =>
-              await github.rest.actions
-                .listWorkflowRuns({
+              while (true) {
+                const { data } = await github.rest.actions.listWorkflowRuns({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
-                  workflow_id: "generate.yml",
-                  event: "workflow_dispatch",
+                  workflow_id: 'generate.yml',
+                  event: 'workflow_dispatch',
                   per_page: 100,
-                })
-                .then(({ data: { workflow_runs: runs } }) => runs.reverse().filter((run) => run.id !== currentRunId));
+                  page: page,
+                });
+
+                const runs = data.workflow_runs;
+                if (runs.length === 0) break;
+
+                runs
+                  .filter((run) => {
+                    if (set.has(run.id)) {
+                      return false;
+                    }
+                    set.add(run.id);
+                    return true;
+                  })
+                  .forEach((run) => {
+                    allRuns.push(run);
+                  });
+
+                if (runs.length < 100) break;
+                page++;
+              }
+
+              return allRuns.reverse().filter((run) => run.id !== currentRunId);
+            };
 
             const listWorkflowJobs = async (runId) =>
               await github.rest.actions
@@ -225,7 +246,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 run_id: runId,
-                name: "results.json",
+                name: 'results.json',
               });
 
               if (!artifact) {
@@ -236,10 +257,10 @@ jobs:
                 artifact_id: artifact.id,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                archive_format: "zip",
+                archive_format: 'zip',
               });
 
-              let { "results.json": file } = UZip.parse(downloaded.data);
+              let { 'results.json': file } = UZip.parse(downloaded.data);
               const results = new TextDecoder().decode(file);
 
               return JSON.parse(results);
@@ -250,17 +271,11 @@ jobs:
             while (getCompletedMatchedRuns().length < dispatchIds.length) {
               await new Promise((resolve) => setTimeout(resolve, 10000));
 
-              const unstartedDispatchIds = getUnstartedDispatchIds();
-              if (unstartedDispatchIds.length !== 0) {
-                console.log(`${unstartedDispatchIds.length}/${dispatchIds.length} workflows started...`);
-              }
-
               const startedRuns = getMatchedRuns();
               const completedRuns = getCompletedMatchedRuns();
-              const pendingRuns = startedRuns.length - completedRuns.length;
-              if (pendingRuns !== 0) {
-                console.log(`${completedRuns.length}/${startedRuns.length} workflows completed...`);
-              }
+
+              console.log(`${startedRuns.length}/${dispatchIds.length} workflows started...`);
+              console.log(`${completedRuns.length}/${startedRuns.length} workflows completed...`);
 
               const runs = await listWorkflows();
 
@@ -273,9 +288,9 @@ jobs:
                 } else {
                   const jobs = await listWorkflowJobs(run.id);
                   const dispatchId = jobs
-                    .find((job) => job.name === "match-dispatchId")
-                    ?.steps.find((step) => step.name.startsWith("dispatchId:"))
-                    ?.name.split("dispatchId:")[1];
+                    .find((job) => job.name === 'match-dispatchId')
+                    ?.steps.find((step) => step.name.startsWith('dispatchId:'))
+                    ?.name.split('dispatchId:')[1];
                   // Add the run
                   runsMap.set(run.id, { dispatchId, ...minifyRun(run) });
                 }
@@ -285,9 +300,9 @@ jobs:
                 if (run.dispatchId && run.conclusion && !run.results) {
                   const runResults = await getResult(run.id);
                   console.log(
-                    "dispatchId:",
+                    'dispatchId:',
                     run.dispatchId,
-                    `completed, (${runResults ? "results found" : "no results found"})`
+                    `completed, ${(runResults && Object.values(runResults).length) || 'no'} results found`
                   );
                   if (runResults) {
                     run.results = runResults;
@@ -308,7 +323,7 @@ jobs:
               2
             );
             console.log(results);
-            require("fs").writeFileSync("results.json", results);
+            require('fs').writeFileSync('results.json', results);
 
       - name: delete-previous-results
         if: ${{ inputs.depth == '1' && inputs.max-depth != '1' }}
