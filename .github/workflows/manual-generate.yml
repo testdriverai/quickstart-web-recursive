@@ -11,7 +11,7 @@ on:
         default: 1
       website-url:
         type: string
-        default: "https://kzmin4o8zlrumvqikugo.lite.vusercontent.net/login"
+        default: "https://kzmkgze3v46fyc6paipj.lite.vusercontent.net/login"
       username:
         type: string
       password:

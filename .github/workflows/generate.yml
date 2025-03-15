@@ -112,7 +112,12 @@ jobs:
               })
                 .then(()=>true)
                 .catch(()=>false)
-              
+
+              console.log(context.repo.owner);
+              console.log(context.repo.repo);
+              console.log(item.branch);
+
+
               if(!branchExists) {
                 console.log(`Branch ${item.branch} does not exist, skipping workflow dispatch`);
                 continue              
@@ -133,7 +138,8 @@ jobs:
                     "dispatchId": dispatchId,
                     "depth": "" + (${{ inputs.depth }} + 1),
                     "max-depth": "" + ${{ inputs.max-depth }},
-                    "previous-file": item.filename
+                    "previous-file": item.filename,
+                    "github-token": process.env.TOKEN
                   }
                 })
               });
