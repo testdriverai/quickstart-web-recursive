@@ -1,0 +1,53 @@
+version: 4.2.12
+session: 67d4d21883a17f660c706145
+steps:
+  - prompt: Focus the browser window.
+    commands: []
+  - prompt: Add or edit a task.
+    commands:
+      - command: hover-text
+        text: Enter username or email
+        description: username input field in the login form
+        action: click
+      - command: type
+        text: testuser
+  - prompt: Add or edit a task.
+    commands:
+      - command: hover-text
+        text: Enter your password
+        description: password input field in the login form
+        action: click
+      - command: type
+        text: password123
+      - command: hover-text
+        text: Login
+        description: login button in the form
+        action: click
+  - prompt: Add or edit a task.
+    commands:
+      - command: hover-text
+        text: Add a new task...
+        description: input field to add a new task
+        action: click
+      - command: type
+        text: Buy groceries
+      - command: hover-text
+        text: Add
+        description: button to add the task
+        action: click
+  - prompt: Wait for a few seconds without any manual save action.
+    commands:
+      - command: wait
+        timeout: 5000
+  - prompt: Refresh the page.
+    commands:
+      - command: press-keys
+        keys:
+          - control
+          - r
+  - prompt: >-
+      Assert that the task changes are automatically saved and persist after the
+      refresh.
+    commands:
+      - command: assert
+        expect: the task "Buy groceries" is visible on the page
