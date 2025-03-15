@@ -1,0 +1,5 @@
+version: 4.2.12
+session: 67d4d21512d898f0a138be88
+steps:
+  - prompt: Focus the browser window.
+    commands: []
