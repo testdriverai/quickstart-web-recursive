@@ -1,0 +1,21 @@
+version: 4.2.12
+session: 67d4d07412d898f0a138be7a
+steps:
+  - prompt: login with username "auix" and password "fooo"
+    commands:
+      - command: hover-text
+        text: Enter username or email
+        description: username input field
+        action: click
+      - command: type
+        text: auix
+      - command: hover-text
+        text: Enter your password
+        description: password input field
+        action: click
+      - command: type
+        text: fooo
+      - command: hover-text
+        text: Login
+        description: login button
+        action: click
