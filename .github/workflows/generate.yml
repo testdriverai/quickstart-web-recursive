@@ -99,7 +99,7 @@ jobs:
           RESULTS: ${{ needs.generate-regression.outputs.results }}
           TOKEN: ${{ secrets.GH_PAT_TOKEN }}
         with:
-          github-token: ${{ secrets.GH_PAT_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const results = [];
 
@@ -139,7 +139,6 @@ jobs:
                     "depth": "" + (${{ inputs.depth }} + 1),
                     "max-depth": "" + ${{ inputs.max-depth }},
                     "previous-file": item.filename,
-                    "github-token": process.env.TOKEN
                   }
                 })
               });
